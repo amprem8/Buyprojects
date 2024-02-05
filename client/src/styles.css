@@ -1,0 +1,84 @@
+/* styles.css */
+
+.navbar {
+  margin-bottom: 20px; /* Adjust margin as needed */
+}
+
+.container-dashboard {
+  background-image: url("your-background-image-url.jpg"); /* Replace with your actual background image URL */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+.project-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.project-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.project-description {
+  margin-top: 10px;
+}
+
+.project-department {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.btn-primary {
+  margin-top: 10px;
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  min-width: auto; 
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+
+.navbar {
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+
+.navbar-toggler-icon {
+  background-color: #333;
+}
+
+.bt
+{
+  position: absolute;
+  left:85%;
+  top:6%;
+
+}

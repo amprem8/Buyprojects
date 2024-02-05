@@ -1,0 +1,75 @@
+/* Login.css */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .bg-white {
+    background-color: white;
+    padding: 1.5em;
+    border-radius: 0.5em;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* login.css */
+.btn-success {
+    background-color: #28a745; /* Green color for success */
+    color: white;
+    /* Add any other necessary styles */
+  }
+  
+  /* Ensure that other styles, such as .form-control, are defined as needed */
+  
+  
+  .btn-default {
+    background-color: #f8f9fa;
+    color: #333;
+    border-color: #ced4da;
+  }
+  
+  .btn-default:hover {
+    background-color: #e2e6ea;
+  }
+  
+  .form-control {
+    border-radius: 0;
+  }
+  
+  .text-decoration-none {
+    text-decoration: none;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  /* Customize as needed */
+  
+.error-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1000;
+  text-align: center;
+}
+
+.error-popup p {
+  margin-bottom: 10px;
+}
+
+.error-popup button {
+  background-color: #ff5252;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

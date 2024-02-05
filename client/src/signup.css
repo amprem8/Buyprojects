@@ -1,0 +1,97 @@
+/* Signup.css */
+
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .bg-white {
+    background-color: white;
+    padding: 1.5em;
+    border-radius: 0.5em;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .btn-default {
+    background-color: #f8f9fa;
+    color: #333;
+    border-color: #ced4da;
+  }
+  
+  .btn-default:hover {
+    background-color: #e2e6ea;
+  }
+  
+  .form-control {
+    border-radius: 0;
+  }
+  
+  .text-decoration-none {
+    text-decoration: none;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  /* signup.css */
+
+/* Style for the background image container */
+.bg-white {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Style for the form inputs */
+.form-control {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Style for the register button */
+.btn-success {
+  background-color: #28a745;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Style for the login link */
+.btn-default {
+  background-color: #f8f9fa;
+  color: #007bff;
+  padding: 10px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Style for the error popup */
+.error-popup {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Optional: Add more styles as needed */
+
+  
