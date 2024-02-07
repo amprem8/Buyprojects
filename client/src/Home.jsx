@@ -14,7 +14,7 @@ const Home = () => {
       id: 1,
       title: 'Project A',
       description: 'A project related to CSE department.',
-      department: 'CSE',
+      domain: 'Fullstack',
     },
     {
       id: 2,
@@ -40,22 +40,34 @@ const Home = () => {
   }
 
   const loginPageStyle = {
-    backgroundImage: 'url("your-background-image-url.jpg")', // Replace with your actual background image URL
+    backgroundImage: 'url("download.jpg")', 
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     height: '100vh',
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
   };
 
   return (
     <div style={loginPageStyle} className="container-dashboard">
-                  <div class= "bt" >
-                  <button className="dropdown-item" onClick={handleLogout}>
-                    Logout
-                  </button>
-                  </div>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="/">Home</Link>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <form className="d-flex" > 
+              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+              <button className="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <div className="bt">
+        <button className="dropdown-item" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
       <div className="row">
         {projects.map((project) => (
           <div className="col-md-4" key={project.id}>
