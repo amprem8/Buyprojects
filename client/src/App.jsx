@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import Login from './Login';
-import Signup from './Signup'; // Corrected import statement
+import Signup from './signup';
 import Home from './Home';
+import Dashboard from './Dashboard'; // Import the Dashboard component
 import './App.css';
 
 function NavBar({ isAuthenticated }) {
@@ -15,7 +16,11 @@ function NavBar({ isAuthenticated }) {
           <Link to="/register" className="navbar-link">Register</Link>
         </>
       )}
-      {isAuthenticated && <Link to="/home" className="navbar-link">Home</Link>}
+      {isAuthenticated && (
+        <>
+          <Link to="/dashboard" className="navbar-link">Dashboard</Link>
+        </>
+      )}
     </nav>
   );
 }
@@ -29,10 +34,16 @@ function App() {
       <Routes>
         <Route
           path="/login"
-          element={<Login setIsAuthenticated={setIsAuthenticated} />}
-        />
-        <Route path="/register" element={<Signup />} />
-        <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
+          element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+        <Route
+          path="/register"
+          element={<Signup />} />
+        <Route
+          path="/home"
+          element={isAuthenticated ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
+        <Route
+          path="/dashboard"
+          element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
         {/* Add a route for the root URL */}
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>

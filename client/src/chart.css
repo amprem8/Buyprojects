@@ -1,0 +1,15 @@
+/* Chart.css */
+.chart {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 200px;
+  border: 1px solid #ccc;
+  padding: 0 10px;
+}
+
+.bar {
+  width: 20px;
+  background-color: #007bff;
+  transition: height 0.5s ease;
+}
