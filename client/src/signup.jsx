@@ -98,8 +98,7 @@ function Signup() {
           Login
         </Link>
       </div>
-      <div class="visme_d" data-title="Custom Form" data-url="vdnw8vp3-custom-form?fullPage=true" data-domain="forms" data-full-page="true" data-min-height="100vh" data-form-id="21264"></div><script src="https://static-bundles.visme.co/forms/vismeforms-embed.js"></script>
-      </div>
+    </div>
   );
 }
 
