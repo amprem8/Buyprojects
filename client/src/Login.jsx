@@ -19,7 +19,7 @@ const Login = ({ setIsAuthenticated }) => {
         console.log(result);
         if (result.data === 'Success') {
           setIsAuthenticated(true); // Update authentication status
-          navigate('/home'); // Redirect to the home page
+          navigate('/newhome'); // Redirect to the home page
         } else {
           setShowError(true);
         }

@@ -6,6 +6,7 @@ import Dashboard from './Dashboard';
 import NewHome from './newhome';
 import Profile from './profile'; // Import the Profile component
 import Settings from './settings'; // Import the Settings component
+import Output from './output'; // Import the Output component
 import './App.css';
 
 function NavBar({ isAuthenticated }) {
@@ -39,10 +40,10 @@ function App() {
         <Route path="/newhome" element={<NewHome />} />
         <Route path="/dashboard/profile" element={<Profile />} /> {/* Route for Profile */}
         <Route path="/dashboard/settings" element={<Settings />} /> {/* Route for Settings */}
+        <Route path="/output/:id" element={<Output />} /> {/* Route for Output */}
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>
   );
 }
-
 export default App;

@@ -1,15 +1,10 @@
+// Dashboard.jsx
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import AddCategoryModal from './AddCategoryModel'; 
 import './Dashboard.css';
-import Profile from './profile';
-import Settings from './settings';
+
 const Dashboard = () => {
-  const navigate = useNavigate();
-
-  const goToHome = () => {
-    navigate('/newhome'); // Navigate to the new homepage
-  };
-
   return (
     <div className="dashboard-container">
       <div className="sidebar">
@@ -17,12 +12,19 @@ const Dashboard = () => {
           Dashboard
         </div>
         <ul className="sidebar-menu">
-          <li><Link to="/newhome">Home</Link></li> {/* Use button and onClick to navigate */}
+          <li><Link to="/newhome">Home</Link></li>
           <li><Link to="/dashboard/profile">Profile</Link></li>
           <li><Link to="/dashboard/settings">Settings</Link></li>
-          {/* Add more sidebar links with icons as needed */}
+          <li><Link to="/dashboard/products">Products</Link></li>
+          <li><Link to="/dashboard/categories">Categories</Link></li> 
+          <li><Link to="/dashboard/orders">Orders</Link></li> 
         </ul>
       </div>
+      <div className="dashboard-content">
+        <h2>Dashboard Overview</h2>
+        {/* Your dashboard content goes here */}
+      </div>
+      <AddCategoryModal /> 
     </div>
   );
 };
