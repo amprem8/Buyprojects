@@ -6,7 +6,7 @@ import Dashboard from './Dashboard';
 import NewHome from './newhome';
 import Profile from './profile'; // Import the Profile component
 import Settings from './settings'; // Import the Settings component
-import Output from './output'; // Import the Output component
+import Buy from './buy'; // Import the Buy component
 import './App.css';
 
 function NavBar({ isAuthenticated }) {
@@ -21,6 +21,7 @@ function NavBar({ isAuthenticated }) {
       {isAuthenticated && (
         <>
           <Link to="/dashboard" className="navbar-link">Dashboard</Link>
+          <Link to="/newhome" className="navbar-link">New Home</Link>
         </>
       )}
     </nav>
@@ -40,7 +41,7 @@ function App() {
         <Route path="/newhome" element={<NewHome />} />
         <Route path="/dashboard/profile" element={<Profile />} /> {/* Route for Profile */}
         <Route path="/dashboard/settings" element={<Settings />} /> {/* Route for Settings */}
-        <Route path="/output/:id" element={<Output />} /> {/* Route for Output */}
+        <Route path="/buy/:projectId" element={<Buy />} /> {/* Route for Buy component with dynamic project ID */}
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>

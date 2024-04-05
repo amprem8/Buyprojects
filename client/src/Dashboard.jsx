@@ -21,8 +21,6 @@ const Dashboard = () => {
         </ul>
       </div>
       <div className="dashboard-content">
-        <h2>Dashboard Overview</h2>
-        {/* Your dashboard content goes here */}
       </div>
       <AddCategoryModal /> 
     </div>
