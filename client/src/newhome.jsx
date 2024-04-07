@@ -104,6 +104,7 @@ const NewHome = () => {
                     <div className="project-title" style={{ color: 'white' }}>{project.title}</div>
                     <div className="project-description" style={{ color: 'white' }}>{project.description}</div>
                     <div className="project-department" style={{ color: 'white' }}>Department: {project.department || 'N/A'}</div>
+                    <div className="project-price" style={{ color: 'white' }}>Price: {project.originalPrice}₹ </div> {}
                     <div>
                       <button
                         className="btn btn-primary mt-2"

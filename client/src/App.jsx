@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import Login from './Login';
-import Signup from './signup';
+import Signup from './Signup';
 import Dashboard from './Dashboard';
 import NewHome from './newhome';
-import Profile from './profile'; // Import the Profile component
-import Settings from './settings'; // Import the Settings component
-import Buy from './buy'; // Import the Buy component
+import Profile from './Profile';
+import Settings from './Settings';
+import Buy from './buy';
 import './App.css';
 
 function NavBar({ isAuthenticated }) {
@@ -39,12 +39,13 @@ function App() {
         <Route path="/register" element={<Signup />} />
         <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
         <Route path="/newhome" element={<NewHome />} />
-        <Route path="/dashboard/profile" element={<Profile />} /> {/* Route for Profile */}
-        <Route path="/dashboard/settings" element={<Settings />} /> {/* Route for Settings */}
-        <Route path="/buy/:projectId" element={<Buy />} /> {/* Route for Buy component with dynamic project ID */}
+        <Route path="/dashboard/profile" element={<Profile />} />
+        <Route path="/dashboard/settings" element={<Settings />} />
+        <Route path="/buy/:projectId" element={<Buy />} />
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>
   );
 }
+
 export default App;
