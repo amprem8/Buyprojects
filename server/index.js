@@ -3,6 +3,7 @@ const mongoose=require('mongoose')
 const cors=require("cors")
 const EmployeeModel=require('./models/Employee.js')
 
+
 const app=express()
 app.use(express.json())
 app.use(cors())
@@ -34,5 +35,5 @@ app.post('/register',(req,res)=>{
     .catch(err=>res.json(err))
 })
 app.listen(3001,()=>{
-    console.log("server is running")
+    console.log("server is running")
 })
