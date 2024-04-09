@@ -90,4 +90,85 @@
   background-image: url('bg.jpg');
   background-size: cover;
   background-position: center;
+}body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container-dashboard {
+  position: relative;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.project-container {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.project-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  transition: box-shadow 0.3s ease;
+  margin-right: 20px; /* Add margin between projects */
+}
+
+.project-card:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project-image {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.project-description-container {
+  padding-top: 20px;
+}
+
+.project-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.project-description {
+  font-size: 16px;
+  color: #666;
+}
+
+.project-department {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.project-price {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.scroll-buttons {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.scroll-buttons button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.scroll-buttons button:hover {
+  color: #333;
 }

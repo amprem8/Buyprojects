@@ -7,28 +7,25 @@ import './login.css';
 const Login = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showError, setShowError] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:3001/login', { email: email, password: password })
-      .then((result) => {
-        console.log(result);
-        if (result.data === 'Success') {
-          setIsAuthenticated(true); // Update authentication status
-          // Save email in localStorage
-          localStorage.setItem('storedEmail', email);
-          navigate('/dashboard'); // Redirect to the dashboard page
-        } else {
-          setShowError(true);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        setShowError(true);
-      });
+    try {
+      const response = await axios.post('http://localhost:3001/login', { email, password });
+      if (response.data === 'Success') {
+        setIsAuthenticated(true);
+        localStorage.setItem('storedEmail', email);
+        navigate('/dashboard');
+      } else {
+        setError('Invalid email or password');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('An unexpected error occurred. Please try again later.');
+    }
   };
 
   const loginPageStyle = {
@@ -41,16 +38,12 @@ const Login = ({ setIsAuthenticated }) => {
     justifyContent: 'center',
   };
 
-  const closeErrorPopup = () => {
-    setShowError(false);
-  };
-  
   return (
     <div>
-      {showError && (
+      {error && (
         <div className="error-popup">
-          <p>Invalid credentials. Please try again.</p>
-          <button onClick={closeErrorPopup}>Close</button>
+          <p>{error}</p>
+          <button onClick={() => setError('')}>Close</button>
         </div>
       )}
       <div style={loginPageStyle} className="login-container">
@@ -62,13 +55,14 @@ const Login = ({ setIsAuthenticated }) => {
                 <strong>Email</strong>
               </label>
               <input
-                type="text"
+                type="email"
                 placeholder="Enter Email"
-                autoComplete="off"
+                autoComplete="email"
                 name="email"
                 className="form-control rounded-0"
-                value={email} // Bind email state to input value
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="mb-3">
@@ -80,7 +74,9 @@ const Login = ({ setIsAuthenticated }) => {
                 placeholder="Enter Password"
                 name="password"
                 className="form-control rounded-0"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
             <button type="submit" className="btn btn-success w-100 rounded-0" id="loginButton">

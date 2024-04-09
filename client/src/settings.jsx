@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import backgroundImg from './img/settings.jpg';
 
 const Settings = () => {
   const [username, setUsername] = useState('');
@@ -7,7 +8,6 @@ const Settings = () => {
   const [password, setPassword] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [darkMode, setDarkMode] = useState(false);
 
   const handleChangeUsername = async () => {
     try {
@@ -39,16 +39,39 @@ const Settings = () => {
     }
   };
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    
+  const closePopup = () => {
+    setSuccessMessage('');
+    setErrorMessage('');
+  };
+
+  const settingsPageStyle = {
+    backgroundImage: `url(${backgroundImg})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'white', // Change text color to white
+    textAlign: 'center',
   };
 
   return (
-    <div className={`settings-container ${darkMode ? 'dark-mode' : ''}`}>
+    <div className="settings-container" style={settingsPageStyle}>
       <h2>Settings</h2>
-      {successMessage && <div className="success-message">{successMessage}</div>}
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
+      {successMessage && (
+        <div className="popup success-popup">
+          <p>{successMessage}</p>
+          <button onClick={closePopup}>Close</button>
+        </div>
+      )}
+      {errorMessage && (
+        <div className="popup error-popup">
+          <p>{errorMessage}</p>
+          <button onClick={closePopup}>Close</button>
+        </div>
+      )}
       <div>
         <label htmlFor="username">Change Username:</label><br />
         <input
@@ -78,12 +101,6 @@ const Settings = () => {
           onChange={(e) => setPassword(e.target.value)}
         /><br />
         <button onClick={handleChangePassword}>Save</button><br /><br />
-      </div>
-      {/* Toggle button for dark mode */}
-      <div>
-        <button onClick={toggleDarkMode}>
-          {darkMode ? 'Light Mode' : 'Dark Mode'}
-        </button>
       </div>
     </div>
   );

@@ -4,15 +4,13 @@ import './styles.css';
 import bgImage from './img/bg.jpg'; 
 import pp1Image from './img/p1.jpg'; 
 import pp2Image from './img/p2.jpg'; 
-import qrCodeImage1 from './img/qr1.jpg'; // Import QR code image for project 1
-import qrCodeImage2 from './img/qr2.jpg'; // Import QR code image for project 2
-import Buy from './buy'; // Import the Buy component
+import pp3Image from './img/email.png';  
+import Buy from './buy';
 
 const NewHome = () => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState("John Doe");
   const [isHovered, setIsHovered] = useState(false);
-
   const isAuthenticated = true;
 
   const projects = [
@@ -24,7 +22,6 @@ const NewHome = () => {
       imageUrl: pp1Image,
       youtubeLink: 'https://www.youtube.com/shorts/V-OLZIpxtXY',
       originalPrice: 100,
-      qrCodeImage: qrCodeImage1 // QR code image for project 1
     },
     {
       id: 2,
@@ -34,8 +31,16 @@ const NewHome = () => {
       imageUrl: pp2Image,
       youtubeLink: 'https://www.youtube.com/shorts/V-OLZIpxtXY',
       originalPrice: 150,
-      qrCodeImage: qrCodeImage2 // QR code image for project 2
     },
+    {
+      id: 3,
+      title: 'Email Spam Detection',
+      description: 'Spam detection using machine learning algorithms.',
+      department: 'CSE',
+      imageUrl: pp3Image,
+      youtubeLink: 'https://youtu.be/u6eFNqXuA4w?si=iscJO8dInGqs-OC0',
+      originalPrice: 200,
+    }
   ];
 
   const handleLogout = () => {
@@ -43,9 +48,8 @@ const NewHome = () => {
   };
 
   const handleBuyProject = (project) => {
-    navigate(`/buy/${project.id}`, { state: { project } }); // Pass project data as state
+    navigate(`/buy/${project.id}`, { state: { project } });
   };
-  
 
   const handleViewOutput = (youtubeLink) => {
     window.open(youtubeLink, '_blank');
@@ -75,16 +79,12 @@ const NewHome = () => {
     backgroundImage: `url(${bgImage})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
+    overflowX: 'hidden',
   };
 
   return (
     <div style={containerStyle}>
       <div className="container-dashboard">
-        <div className="bt">
-          <button className="dropdown-item" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
         <div className="row">
           {projects.map((project) => (
             <div
@@ -98,39 +98,22 @@ const NewHome = () => {
               >
                 <div className="project-content">
                   <div className="project-image">
-                    <img src={project.imageUrl} alt={project.title} />
+                    <img src={project.imageUrl} alt={project.title} style={{ maxWidth: '100%', height: 'auto' }} />
                   </div>
                   <div className="project-description-container">
-                    <div className="project-title" style={{ color: 'white' }}>{project.title}</div>
-                    <div className="project-description" style={{ color: 'white' }}>{project.description}</div>
-                    <div className="project-department" style={{ color: 'white' }}>Department: {project.department || 'N/A'}</div>
-                    <div className="project-price" style={{ color: 'white' }}>Price: {project.originalPrice}₹ </div> {}
-                    <div>
+                    <div className="project-title">{project.title}</div>
+                    <div className="project-description">{project.description}</div>
+                    <div className="project-department">Department: {project.department}</div>
+                    <div className="project-price">Price: {project.originalPrice}₹</div>
+                    <div className="project-buttons">
                       <button
                         className="btn btn-primary mt-2"
-                        style={{
-                          backgroundColor: 'red',
-                          color: 'white',
-                          borderRadius: '20px',
-                          padding: '10px 20px',
-                          border: 'none',
-                          marginRight: '10px',
-                          cursor: 'pointer',
-                        }}
                         onClick={() => handleBuyProject(project)}
                       >
                         Buy Project
                       </button>
                       <button
                         className="btn btn-secondary mt-2"
-                        style={{
-                          backgroundColor: 'green',
-                          color: 'white',
-                          borderRadius: '20px',
-                          padding: '10px 20px',
-                          border: 'none',
-                          cursor: 'pointer',
-                        }}
                         onClick={() => handleViewOutput(project.youtubeLink)}
                       >
                         View Output
@@ -144,6 +127,11 @@ const NewHome = () => {
         </div>
       </div>
       <footer style={footerStyle}>
+        <div>
+          <button className="btn btn-primary" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
         <div>Contact us at <a href="mailto:amprem8@gmail.com">amprem8@gmail.com</a> for any inquiries</div>
       </footer>
     </div>
