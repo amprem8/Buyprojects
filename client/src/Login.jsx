@@ -1,4 +1,3 @@
-// Login.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -19,7 +18,9 @@ const Login = ({ setIsAuthenticated }) => {
         console.log(result);
         if (result.data === 'Success') {
           setIsAuthenticated(true); // Update authentication status
-          navigate('/newhome'); // Redirect to the home page
+          // Save email in localStorage
+          localStorage.setItem('storedEmail', email);
+          navigate('/dashboard'); // Redirect to the dashboard page
         } else {
           setShowError(true);
         }
@@ -66,6 +67,7 @@ const Login = ({ setIsAuthenticated }) => {
                 autoComplete="off"
                 name="email"
                 className="form-control rounded-0"
+                value={email} // Bind email state to input value
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>

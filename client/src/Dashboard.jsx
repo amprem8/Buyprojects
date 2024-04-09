@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Dashboard.css'; // Import your CSS file
 import image from "./img/dashboard.jpg"; 
 import axios from 'axios';
+
 const Dashboard = () => {
   const [projectDetails, setProjectDetails] = useState({
     projectName: '',
@@ -13,9 +14,9 @@ const Dashboard = () => {
     selectedFolder: '',
     sampleImage: ''
   });
-
-
   
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProjectDetails(prevState => ({
@@ -32,9 +33,27 @@ const Dashboard = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Your form submission logic here
+
+    try {
+      // Make a POST request to your server endpoint
+      const response = await axios.post('http://localhost:3001/dashboard', projectDetails);
+      
+      // Handle success response
+      console.log('Server response:', response.data);
+
+      // Redirect to newhome page after successful form submission
+      navigate('/newhome', { state: { projectDetails } });
+    } catch (error) {
+      // Handle error
+      console.error('Error submitting form:', error);
+    }
+  };
+
+  const handleUpdate = () => {
+    // Logic for updating project details
+    alert('Project added!'); // Show alert message
   };
 
   return (
@@ -69,8 +88,9 @@ const Dashboard = () => {
           <input type="file" name="selectedFolder" onChange={handleFileChange} webkitdirectory="true" />
           <input type="file" name="sampleImage" accept="image/*" onChange={handleFileChange} />
           <button type="submit">Submit</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <button type="button" onClick={handleUpdate}>Update</button>
         </form>
-        
       </div>
     </div>
   );
