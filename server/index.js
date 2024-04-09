@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const cors = require("cors");
-const DashboardModel = require('./models/Dashboard'); // Import Dashboard model
+const DashboardModel = require('./models/Dashboard'); 
 const EmployeeModel = require('./models/Employee.js');
 
 const app = express();
@@ -10,7 +10,7 @@ app.use(cors());
 
 mongoose.connect("mongodb://localhost:27017/employee");
 
-// Route to store dashboard data into the 'users' collection
+
 app.post("/dashboard", async (req, res) => {
   try {
     const dashboardData = await DashboardModel.create(req.body); // Use DashboardModel
