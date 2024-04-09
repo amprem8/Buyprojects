@@ -1,5 +1,3 @@
-// models/Dashboard.js
-
 const mongoose = require('mongoose');
 
 const dashboardSchema = new mongoose.Schema({
@@ -33,5 +31,6 @@ const dashboardSchema = new mongoose.Schema({
   }
 });
 
-const Dashboard = mongoose.model('dashboard', dashboardSchema); // Adjusted model name
+const Dashboard = mongoose.model('users', dashboardSchema, 'employee');
+
 module.exports = Dashboard;
