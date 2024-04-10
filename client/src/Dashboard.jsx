@@ -51,11 +51,6 @@ const Dashboard = () => {
     }
   };
 
-  const handleUpdate = () => {
-    // Logic for updating project details
-    alert('Project added!'); // Show alert message
-  };
-
   return (
     <div className="dashboard-container" style={{ backgroundImage: `url(${image})` }}>
       <div className="sidebar">
@@ -86,10 +81,14 @@ const Dashboard = () => {
           <input type="text" name="videoLink" placeholder="Output Video Link" value={projectDetails.videoLink} onChange={handleChange} /><br/>
           <br></br>
           <input type="file" name="selectedFolder" onChange={handleFileChange} webkitdirectory="true" />
+          {!projectDetails.selectedFolder && <span>Folder uploading</span>}
+          <br/>
+          <br></br>
           <input type="file" name="sampleImage" accept="image/*" onChange={handleFileChange} />
+          {!projectDetails.sampleImage && <span>Image uploading</span>}
+          <br/>
           <button type="submit">Submit</button>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <button type="button" onClick={handleUpdate}>Update</button>
+
         </form>
       </div>
     </div>

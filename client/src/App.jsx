@@ -6,7 +6,7 @@ import Dashboard from './Dashboard';
 import NewHome from './newhome';
 import Profile from './Profile';
 import Settings from './Settings';
-import Buy from './buy';
+import Buy from './buy'; // Import the Buy component
 import './App.css';
 
 function NavBar({ isAuthenticated }) {
@@ -41,7 +41,7 @@ function App() {
         <Route path="/newhome" element={<NewHome />} />
         <Route path="/dashboard/profile" element={<Profile />} />
         <Route path="/dashboard/settings" element={<Settings />} />
-        <Route path="/buy/:projectId" element={<Buy />} />
+        <Route path="/buy" element={<Buy />} /> {/* Define route for /buy path */}
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>

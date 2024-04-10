@@ -48,7 +48,7 @@ const NewHome = () => {
   };
 
   const handleBuyProject = (project) => {
-    navigate(`/buy/${project.id}`, { state: { project } });
+    navigate(`/buy`, { state: { project } }); // Redirect to the buy page with project information
   };
 
   const handleViewOutput = (youtubeLink) => {

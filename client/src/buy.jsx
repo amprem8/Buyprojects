@@ -258,7 +258,7 @@ const Buy = () => {
     <div className='payment-container' style={{ backgroundImage: `url(${razorpayImage})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}> {/* Set background image and center content */}
       <h2 style={{ color: 'white' }}>Payment</h2> {/* Change heading color to white */}
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <input type="text" placeholder='Enter Amount' value={amount} onChange={(e) => setAmount(e.target.value)} style={{ marginBottom: '10px' }} />
+        <input type="text" placeholder='Enter Amount' value={project.originalPrice} readOnly style={{ marginBottom: '10px' }} /> {/* Set default value as project price */}
         <button type="submit" style={{ padding: '10px 20px', backgroundColor: '#3399cc', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Submit</button>
       </form>
     </div>
