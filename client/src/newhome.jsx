@@ -110,6 +110,7 @@ const NewHome = () => {
   return (
     <div style={containerStyle}>
       <div className="container-dashboard">
+        <br></br>
         <div className="search-bar">
           <input
             type="text"
