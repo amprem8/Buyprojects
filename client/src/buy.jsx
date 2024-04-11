@@ -173,8 +173,7 @@ const Buy = () => {
         </body>
         </html>
         `;
-    }else if(project.id===3)
-    {
+    } else if (project.id === 3) {
       documentContent = `// Source code for project: ${project.title}\n\nimport numpy as np
       import pandas as pd
       from sklearn.model_selection import train_test_split
@@ -218,18 +217,21 @@ const Buy = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let finalAmount = amount;
-    if (amount === "") {
-      alert("Please Enter the Amount");
+    let finalAmount = parseFloat(amount);
+    if (isNaN(finalAmount) || finalAmount <= 0) {
+      alert("Please Enter a Valid Amount");
     } else {
+      // Convert amount to paise (1 Rupee = 100 paise)
+      finalAmount = finalAmount * 100; // Convert to paise
       // Calculate final amount with 10% charge
-      finalAmount = parseFloat(amount) + (parseFloat(amount) * 0.1);
-      alert(`Final Amount: ${finalAmount}`);
-
+      finalAmount = finalAmount * 1.10; // Adding 10% charge
+      finalAmount=Math.round((finalAmount + Number.EPSILON) * 100) / 100
+      alert(`Final Amount: ${finalAmount / 100} INR`); // Convert back to Rupees for display
+  
       var options = {
         key: "rzp_test_QM6YdnGYkwCaVd",
         key_secret: "Nr71Rm0FcxvJ6Z7wCWo6XVQs",
-        amount: finalAmount * 100,
+        amount: finalAmount,
         currency: "INR",
         name: "InnoTradeHUB",
         description: "for payments",
@@ -253,12 +255,31 @@ const Buy = () => {
       pay.open();
     }
   };
+  
+
 
   return (
-    <div className='payment-container' style={{ backgroundImage: `url(${razorpayImage})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}> {/* Set background image and center content */}
+    <div className='payment-container' style={{ 
+      backgroundImage: `url(${razorpayImage})`, 
+      backgroundSize: 'cover', 
+      backgroundPosition: 'center', 
+      backgroundRepeat: 'no-repeat', 
+      backgroundAttachment: 'fixed', // Set background attachment to fixed
+      minHeight: '100vh', 
+      display: 'flex', 
+      flexDirection: 'column', 
+      justifyContent: 'center', 
+      alignItems: 'center' 
+    }}> 
       <h2 style={{ color: 'white' }}>Payment</h2> {/* Change heading color to white */}
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <input type="text" placeholder='Enter Amount' value={project.originalPrice} readOnly style={{ marginBottom: '10px' }} /> {/* Set default value as project price */}
+        <input 
+          type="text" 
+          placeholder='Enter Amount' 
+          value={amount} 
+          onChange={(e) => setAmount(e.target.value)} 
+          style={{ marginBottom: '10px' }} 
+        /> {/* Set default value as project price */}
         <button type="submit" style={{ padding: '10px 20px', backgroundColor: '#3399cc', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Submit</button>
       </form>
     </div>

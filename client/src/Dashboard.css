@@ -35,4 +35,10 @@
     width: 20px; /* Adjust the size as needed */
     margin-right: 10px;
   }
-  
+  /* Dashboard.css */
+.dashboard-container {
+  display: flex;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+}

@@ -104,8 +104,10 @@ const NewHome = () => {
     backgroundImage: `url(${bgImage})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
+    backgroundAttachment: 'fixed', 
     overflowX: 'hidden',
   };
+  
 
   return (
     <div style={containerStyle}>
