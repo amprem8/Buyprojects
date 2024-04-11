@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import bgImage from './img/bg.jpg'; 
 import pp1Image from './img/p1.jpg'; 
 import pp2Image from './img/p2.jpg'; 
-import pp3Image from './img/email.png';  
+import pp3Image from './img/email.png'; 
 import Buy from './buy';
 
 const NewHome = () => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState("John Doe");
   const [isHovered, setIsHovered] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterOption, setFilterOption] = useState("name");
+  const [filteredProjects, setFilteredProjects] = useState([]);
   const isAuthenticated = true;
 
   const projects = [
@@ -43,6 +46,20 @@ const NewHome = () => {
     }
   ];
 
+  useEffect(() => {
+    // Filter projects based on searchQuery and filterOption
+    const filtered = projects.filter(project => {
+      if (filterOption === "name") {
+        return project.title.toLowerCase().includes(searchQuery.toLowerCase());
+      } else if (filterOption === "dept") {
+        return project.department.toLowerCase().includes(searchQuery.toLowerCase());
+      } else if (filterOption === "price") {
+        return project.originalPrice.toString().includes(searchQuery);
+      }
+    });
+    setFilteredProjects(filtered);
+  }, [searchQuery, filterOption]);
+
   const handleLogout = () => {
     navigate('/login');
   };
@@ -55,10 +72,13 @@ const NewHome = () => {
     window.open(youtubeLink, '_blank');
   };
 
-  if (!isAuthenticated) {
-    navigate('/login');
-    return null;
-  }
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleFilterOptionChange = (event) => {
+    setFilterOption(event.target.value);
+  };
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -67,6 +87,11 @@ const NewHome = () => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+
+  if (!isAuthenticated) {
+    navigate('/login');
+    return null;
+  }
 
   const footerStyle = {
     backgroundColor: '#f8f9fa',
@@ -85,8 +110,22 @@ const NewHome = () => {
   return (
     <div style={containerStyle}>
       <div className="container-dashboard">
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search by title, department, or price..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            style={{ width: '70%' }} // Make the search bar wider
+          />
+          <select onChange={handleFilterOptionChange} value={filterOption}>
+            <option value="name">Name</option>
+            <option value="dept">Department</option>
+            <option value="price">Price</option>
+          </select>
+        </div>
         <div className="row">
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <div
               className="col-md-4 project-container"
               key={project.id}
