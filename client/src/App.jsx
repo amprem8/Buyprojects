@@ -4,8 +4,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Dashboard from './Dashboard';
 import NewHome from './newhome';
-import Profile from './Profile';
-import Settings from './Settings';
+import Settings from './settings';
 import Buy from './buy'; // Import the Buy component
 import './App.css';
 
@@ -28,18 +27,26 @@ function NavBar({ isAuthenticated }) {
   );
 }
 
+function PreLoginScreen() {
+  return (
+    <div className="pre-login-screen">
+      <h1>InnoTrade HUB</h1>
+    </div>
+  );
+}
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     <BrowserRouter>
+      { !isAuthenticated && <PreLoginScreen /> }
       <NavBar isAuthenticated={isAuthenticated} />
       <Routes>
         <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
         <Route path="/newhome" element={<NewHome />} />
-        <Route path="/dashboard/profile" element={<Profile />} />
         <Route path="/dashboard/settings" element={<Settings />} />
         <Route path="/buy" element={<Buy />} /> {/* Define route for /buy path */}
         <Route path="/" element={<Navigate to="/login" />} />

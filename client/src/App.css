@@ -4,6 +4,10 @@ body {
   padding: 0;
   font-family: 'Arial', sans-serif;
 }
+.pre-login-screen h1:hover {
+  color: #00ffea;
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff9800, 0 0 40px #ff9800;
+}
 
 .navbar {
   background-color: #333;

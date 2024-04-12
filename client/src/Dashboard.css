@@ -1,5 +1,10 @@
 
   /* Dashboard.css */
+  
+  .sidebar-header span:hover {
+    color: #ff9800;
+    text-shadow: 0 0 10px #ff9800, 0 0 20px #ff9800, 0 0 40px #ff9800;
+  }
 .dashboard-container {
     display: flex;
   }

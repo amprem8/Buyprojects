@@ -4,6 +4,23 @@ import './Dashboard.css'; // Import your CSS file
 import image from "./img/dashboard.jpg"; 
 import axios from 'axios';
 
+const Sidebar = () => {
+  return (
+    <div className="sidebar">
+      <div className="sidebar-header">
+        {/* Add header content here */}
+        <span>Inno</span><span>Trade</span><span>HUB</span>
+      </div>
+      <ul className="sidebar-menu">
+        <li><Link to="/newhome">Home</Link></li>
+        <br></br>
+        <li><Link to="/dashboard/settings">Settings</Link></li>
+        <br></br>
+      </ul>
+    </div>
+  );
+};
+
 const Dashboard = () => {
   const [projectDetails, setProjectDetails] = useState({
     projectName: '',
@@ -53,19 +70,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container" style={{ backgroundImage: `url(${image})` }}>
-      <div className="sidebar">
-        <div className="sidebar-header">
-          Dashboard
-        </div>
-        <ul className="sidebar-menu">
-          <li><Link to="/newhome">Home</Link></li>
-          <br></br>
-          <li><Link to="/dashboard/profile">Profile</Link></li>
-          <br></br>
-          <li><Link to="/dashboard/settings">Settings</Link></li>
-          <br></br>
-        </ul>
-      </div>
+      <Sidebar />
       <div className="project-details-form" style={{ color: 'white' }}>
         <h2>Enter Project Details</h2>
         <form onSubmit={handleSubmit}>
@@ -88,7 +93,6 @@ const Dashboard = () => {
           {!projectDetails.sampleImage && <span>Image uploading</span>}
           <br/>
           <button type="submit">Submit</button>
-
         </form>
       </div>
     </div>

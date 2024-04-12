@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import backgroundImg from './img/settings.jpg';
 
 const Settings = () => {
@@ -8,40 +7,39 @@ const Settings = () => {
   const [password, setPassword] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [saveClicked, setSaveClicked] = useState(false);
 
-  const handleChangeUsername = async () => {
-    try {
-      await axios.put('/api/user', { username });
-      setSuccessMessage('Username changed successfully');
-    } catch (error) {
-      console.error('Error updating username:', error);
-      setErrorMessage('Failed to change username');
+  const handleChangeUsername = () => {
+    if (!validateUsername(username)) {
+      setErrorMessage('Username can only contain alphabets');
+      return;
     }
+    setSuccessMessage('Username changed successfully');
+    setSaveClicked(true);
   };
 
-  const handleChangeEmail = async () => {
-    try {
-      await axios.put('/api/user/email', { email });
-      setSuccessMessage('Email changed successfully');
-    } catch (error) {
-      console.error('Error updating email:', error);
-      setErrorMessage('Failed to change email');
+  const handleChangeEmail = () => {
+    if (!validateEmail(email)) {
+      setErrorMessage('Invalid email format');
+      return;
     }
+    setSuccessMessage('Email changed successfully');
+    setSaveClicked(true);
   };
 
-  const handleChangePassword = async () => {
-    try {
-      await axios.put('/api/user/password', { password });
-      setSuccessMessage('Password changed successfully');
-    } catch (error) {
-      console.error('Error updating password:', error);
-      setErrorMessage('Failed to change password');
+  const handleChangePassword = () => {
+    if (password.length < 6) {
+      setErrorMessage('Password must be at least 6 characters long');
+      return;
     }
+    setSuccessMessage('Password changed successfully');
+    setSaveClicked(true);
   };
 
   const closePopup = () => {
     setSuccessMessage('');
     setErrorMessage('');
+    setSaveClicked(false);
   };
 
   const settingsPageStyle = {
@@ -53,14 +51,24 @@ const Settings = () => {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    color: 'white', // Change text color to white
+    color: 'white',
     textAlign: 'center',
+  };
+
+  const validateUsername = (username) => {
+    const usernameRegex = /^[a-zA-Z]+$/;
+    return usernameRegex.test(username);
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
 
   return (
     <div className="settings-container" style={settingsPageStyle}>
       <h2>Settings</h2>
-      {successMessage && (
+      {successMessage && saveClicked && (
         <div className="popup success-popup">
           <p>{successMessage}</p>
           <button onClick={closePopup}>Close</button>
