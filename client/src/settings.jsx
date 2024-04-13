@@ -45,6 +45,7 @@ const Settings = () => {
   const settingsPageStyle = {
     backgroundImage: `url(${backgroundImg})`,
     backgroundSize: 'cover',
+    backgroundAttachment:'fixed',
     backgroundPosition: 'center',
     minHeight: '100vh',
     display: 'flex',
